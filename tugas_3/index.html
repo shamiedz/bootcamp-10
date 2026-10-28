@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio - Dhimas Novergust</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Google Font: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-orange: #f86f03;
+      --orange-hover: #e05e00;
+      --dark-text: #1e1e1e;
+      --muted-text: #6c757d;
+      --card-bg: #fdfdfd;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark-text);
+      background-color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 24px;
+      letter-spacing: 1px;
+      color: #111;
+    }
+    .navbar-brand span {
+      color: var(--primary-orange);
+    }
+    .nav-link {
+      font-weight: 500;
+      color: #333 !important;
+      font-size: 15px;
+      margin: 0 6px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary-orange) !important;
+    }
+    .btn-orange {
+      background-color: var(--primary-orange);
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 6px;
+      transition: all 0.2s ease-in-out;
+    }
+    .btn-orange:hover {
+      background-color: var(--orange-hover);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(248, 111, 3, 0.3);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 60px 0 80px 0;
+    }
+    .hero-greeting {
+      font-weight: 600;
+      color: var(--primary-orange);
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .hero-title {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-desc {
+      color: var(--muted-text);
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 500px;
+      margin-bottom: 25px;
+    }
+
+    /* Hero Image Circle */
+    .hero-img-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-img-circle {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: #ededed;
+      border: 10px solid #f7f7f7;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .hero-img-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .social-links {
+      margin-top: 18px;
+    }
+    .social-links a {
+      color: #222;
+      font-size: 18px;
+      margin: 0 8px;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .social-links a:hover {
+      color: var(--primary-orange);
+      transform: translateY(-3px);
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-weight: 800;
+      font-size: 34px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      color: var(--muted-text);
+      font-size: 14px;
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 40px auto;
+      line-height: 1.6;
+    }
+
+    /* About Me Cards */
+    .bio-box {
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 1px solid #eaeaea;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .bio-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    }
+    .bio-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      background-color: #fff4ec;
+      color: var(--primary-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .bio-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+      color: #111;
+    }
+    .bio-text {
+      font-size: 13px;
+      color: var(--muted-text);
+      margin-bottom: 0;
+      word-break: break-word;
+    }
+
+    /* Project Filter Tabs */
+    .project-filter {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+    .filter-btn {
+      border: 1px solid #e0e0e0;
+      background: transparent;
+      padding: 7px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--primary-orange);
+      color: #fff;
+      border-color: var(--primary-orange);
+    }
+
+    /* Project Cards */
+    .project-card {
+      border: 1px solid #ebebeb;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    }
+    .project-thumb-box {
+      width: 100%;
+      height: 220px;
+      background-color: #f8f9fa;
+      overflow: hidden;
+      border-bottom: 1px solid #ebebeb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .project-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover .project-thumb {
+      transform: scale(1.04);
+    }
+    .project-card-body {
+      padding: 16px 20px 20px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .project-category {
+      color: var(--primary-orange);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .project-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #222;
+    }
+    .btn-view-project {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-orange);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #fafafa;
+      border-top: 1px solid #eaeaea;
+      padding: 24px 0;
+      font-size: 13px;
+      color: var(--muted-text);
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    /* Responsif Mobile */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 36px;
+      }
+      .hero-section {
+        text-align: center;
+        padding: 40px 0 60px 0;
+      }
+      .hero-desc {
+        margin: 0 auto 24px auto;
+      }
+      .hero-img-circle {
+        width: 250px;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white border-bottom py-3">
+    <div class="container">
+      <a class="navbar-brand" href="#">DHIMSON<span>DEV</span></a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="text-center">
+          <button class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#contactModal">
+            <i class="bi bi-download me-1"></i> Download CV
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. HERO / HEADER SECTION -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="row align-items-center g-4 flex-column-reverse flex-lg-row">
+        <!-- Text Kiri -->
+        <div class="col-lg-6">
+          <p class="hero-greeting">Hi, I am Dhimas Novergust</p>
+          <h1 class="hero-title">Web & App<br>Developer</h1>
+          <p class="hero-desc">
+           Highly skilled Web Developer and Digital Project Manager specializing in building modern, interactive, and responsive web interfaces. Expert at delivering seamless user experiences across all devices while effectively leading digital projects from conception to completion using agile methodologies
+          </p>
+          <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+            <button class="btn btn-orange px-4 py-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+              Hire Me
+            </button>
+            <a href="#projects" class="btn btn-outline-secondary px-4 py-2">
+              See Portofolio
+            </a>
+          </div>
+        </div>
+
+        <!-- Foto Bulat Kanan -->
+        <div class="col-lg-6 text-center">
+          <div class="hero-img-wrapper">
+            <div class="hero-img-circle">
+              <!-- Memakai foto lokal dengan fallback otomatis -->
+              <img src="images/profil.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" alt="Foto Profil">
+            </div>
+            <div class="social-links">
+              <a href="https://twitter.com" target="_blank"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+              <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+              <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ABOUT ME / BIODATA -->
+  <section class="py-5 bg-light" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-desc">
+      Brief information regarding my educational background, professional expertise, and official contact details.
+      </p>
+
+      <div class="row g-3">
+        <!-- 1. Full Name -->
+        <div class="col-md-4 col-sm-6">
+          <div class="bio-box">
+            <div class="bio-icon"><i class="bi bi-person-fill"></i></div>
+            <div>
+              <div class="bio-title">Full Name</div>
+              <p class="bio-text">Dhimas Novergust Bramanda</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Education -->
+        <div class="col-md-4 col-sm-6">
+          <div class="bio-box">
+            <div class="bio-icon"><i class="bi bi-mortarboard-fill"></i></div>
+            <div>
+              <div class="bio-title">Education</div>
+              <p class="bio-text">D3 Teknik Informatika</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Pekerjaan -->
+        <div class="col-md-4 col-sm-6">
+          <div class="bio-box">
+            <div class="bio-icon"><i class="bi bi-briefcase-fill"></i></div>
+            <div>
+              <div class="bio-title">Work</div>
+              <p class="bio-text">Project Management Junior Analyst</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="col-md-4 col-sm-6">
+          <div class="bio-box">
+            <div class="bio-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div>
+              <div class="bio-title">Contact</div>
+              <p class="bio-text">dhimas.novegust@gmail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Hobi -->
+        <div class="col-md-4 col-sm-6">
+          <div class="bio-box">
+            <div class="bio-icon"><i class="bi bi-compass-fill"></i></div>
+            <div>
+              <div class="bio-title">Hobbies</div>
+              <p class="bio-text">Hiking, Trekking, Diving</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Alamat -->
+        <div class="col-md-4 col-sm-6">
+          <div class="bio-box">
+            <div class="bio-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div>
+              <div class="bio-title">Address</div>
+              <p class="bio-text">Tangerang, Banten, Indonesia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MY PROJECTS -->
+  <section class="py-5" id="projects">
+    <div class="container">
+      <h2 class="section-title">My Projects</h2>
+      <p class="section-desc">
+        A collection of applications and websites that I have designed with a focus on delivering optimal user experiences.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="project-filter">
+        <button class="filter-btn">All</button>
+        <button class="filter-btn">UI/UX</button>
+        <button class="filter-btn active">Web Design</button>
+        <button class="filter-btn">App Design</button>
+        <button class="filter-btn">Graphic Design</button>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="row g-4">
+        <!-- Project 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal1">
+            <div class="project-thumb-box">
+              <img src="images/project1.jpg" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80'" alt="Project 1" class="project-thumb">
+            </div>
+            <div class="project-card-body">
+              <div>
+                <span class="project-category">Web Design</span>
+                <h3 class="project-card-title">AirCalling Landing Page Design</h3>
+              </div>
+              <span class="btn-view-project">Detail & Demo <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal2">
+            <div class="project-thumb-box">
+              <img src="images/project2.jpg" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&auto=format&fit=crop&q=80'" alt="Project 2" class="project-thumb">
+            </div>
+            <div class="project-card-body">
+              <div>
+                <span class="project-category">Web Design</span>
+                <h3 class="project-card-title">Business Landing Page Design</h3>
+              </div>
+              <span class="btn-view-project">Detail & Demo <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal3">
+            <div class="project-thumb-box">
+              <img src="images/project3.jpg" onerror="this.src='https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80'" alt="Project 3" class="project-thumb">
+            </div>
+            <div class="project-card-body">
+              <div>
+                <span class="project-category">Web Design</span>
+                <h3 class="project-card-title">Ecom Web Page Design</h3>
+              </div>
+              <span class="btn-view-project">Detail & Demo <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      &copy; 2026 Dhimas Novergust. All rights reserved. Powered by Bootstrap 5.
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       MODAL POPUP 1: PROYEK 1
+       ========================================================= -->
+  <div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="modalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="modalLabel1">AirCalling Landing Page Design</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-4">
+          <img src="images/project1.jpg" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop&q=80'" class="img-fluid rounded mb-3 w-100" style="max-height: 350px; object-fit: cover;" alt="Preview 1">
+          <span class="badge bg-warning text-dark mb-2">Web Design & Development</span>
+          <p class="text-muted">
+            A modern communication platform landing page design project. The main features include an interactive hero section, a call management feature showcase, and responsive integration across all smartphone and desktop screens.
+          </p>
+          <div class="d-flex gap-2">
+            <span class="badge bg-light text-dark border">Bootstrap 5</span>
+            <span class="badge bg-light text-dark border">HTML5 & CSS3</span>
+            <span class="badge bg-light text-dark border">JavaScript</span>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="https://www.bhinneka.com" target="_blank" class="btn btn-orange">Open Live Demo <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL POPUP 2: PROYEK 2
+       ========================================================= -->
+  <div class="modal fade" id="projectModal2" tabindex="-1" aria-labelledby="modalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="modalLabel2">Business Landing Page Design</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-4">
+          <img src="images/project2.jpg" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80'" class="img-fluid rounded mb-3 w-100" style="max-height: 350px; object-fit: cover;" alt="Preview 2">
+          <span class="badge bg-warning text-dark mb-2">Corporate Website</span>
+          <p class="text-muted">
+            A corporate website design that showcases the company’s portfolio, service catalog, business analytics data, and a professional partnership form.
+          </p>
+          <div class="d-flex gap-2">
+            <span class="badge bg-light text-dark border">Bootstrap 5</span>
+            <span class="badge bg-light text-dark border">CSS Grid</span>
+            <span class="badge bg-light text-dark border">UI/UX</span>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="https://www.zalora.co.id" target="_blank" class="btn btn-orange">Open Live Demo <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL POPUP 3: PROYEK 3
+       ========================================================= -->
+  <div class="modal fade" id="projectModal3" tabindex="-1" aria-labelledby="modalLabel3" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="modalLabel3">Ecommerce Web Page Design</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-4">
+          <img src="images/project3.jpg" onerror="this.src='https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=900&auto=format&fit=crop&q=80'" class="img-fluid rounded mb-3 w-100" style="max-height: 350px; object-fit: cover;" alt="Preview 3">
+          <span class="badge bg-warning text-dark mb-2">E-Commerce Platform</span>
+          <p class="text-muted">
+           A complete online store interface solution, featuring product category filters, a checkout cart, and a mobile-friendly checkout system.
+          </p>
+          <div class="d-flex gap-2">
+            <span class="badge bg-light text-dark border">Bootstrap 5</span>
+            <span class="badge bg-light text-dark border">Responsive Web</span>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="https://www.tokopedia.com" target="_blank" class="btn btn-orange">Open Live Demo <i class="bi bi-box-arrow-up-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL POPUP 4: HIRE ME / CONTACT
+       ========================================================= -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-bold" id="contactModalLabel">Contact Me</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body py-3">
+          <p class="text-muted small mb-3">Send us a message for project collaboration or job recruitment.</p>
+          <form onsubmit="event.preventDefault(); alert('Your message has been sent successfully!');">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Full Name</label>
+              <input type="text" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Email</label>
+              <input type="email" class="form-control" placeholder="name@email.com" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Message / Offer</label>
+              <textarea class="form-control" rows="3" placeholder="Write your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-orange w-100">Sending Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS (Popper + Bootstrap Modal functionality) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

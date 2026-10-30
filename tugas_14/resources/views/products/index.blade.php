@@ -6,8 +6,9 @@
 <div class="container py-4">
   <div class="text-center mb-4">
     <h3 class="fw-bold">Katalog Produk</h3>
-    <p class="text-muted small">Kelola via <code>ProductController@index</code> (Database: bc10_tugas13)</p>
+    <p class="text-muted small">Eloquent Relationship (<code>Product</code> & <code>ProductCategory</code>) + Pagination</p>
     
+    <!-- Filter Kategori -->
     <div class="d-flex justify-content-center gap-2 mt-3">
       <a href="{{ route('products.index') }}" class="btn btn-sm {{ empty($kategori) || $kategori == 'all' ? 'btn-dark' : 'btn-outline-dark' }}">Semua</a>
       <a href="{{ route('products.index', ['kategori' => 'elektronik']) }}" class="btn btn-sm {{ $kategori == 'elektronik' ? 'btn-dark' : 'btn-outline-dark' }}">Elektronik</a>
@@ -26,6 +27,7 @@
                alt="{{ $product->name }}">
                
           <div class="card-body d-flex flex-column">
+            <!-- Menampilkan nama kategori melalui relasi Eloquent ProductCategory -->
             <span class="badge bg-light text-secondary border w-auto align-self-start mb-2">
               {{ $product->category->name ?? 'Umum' }}
             </span>
@@ -41,9 +43,17 @@
       </div>
     @empty
       <div class="col-12 text-center py-5">
-        <p class="text-muted">Tidak ada produk dalam kategori ini.</p>
+        <div class="card border-0 shadow-sm py-5 col-md-6 mx-auto">
+          <i class="bi bi-box-seam display-4 text-muted mb-3"></i>
+          <p class="text-muted mb-0">Tidak ada produk dalam kategori ini.</p>
+        </div>
       </div>
     @endforelse
+  </div>
+
+  <!-- Area Navigasi Pagination -->
+  <div class="d-flex justify-content-center mt-5">
+    {{ $products->withQueryString()->links() }}
   </div>
 </div>
 @endsection

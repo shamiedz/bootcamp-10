@@ -18,8 +18,9 @@ class Product extends Model
         'image',
     ];
 
+    // Relasi: Setiap Produk dimiliki oleh satu Kategori (Inverse One-to-Many)
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(ProductCategory::class, 'category_id');
     }
 }

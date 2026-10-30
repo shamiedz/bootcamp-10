@@ -9,6 +9,7 @@ class PageController extends Controller
 {
     public function home()
     {
+        // Mengambil 4 produk unggulan beserta relasi kategorinya
         $featured_products = Product::with('category')->take(4)->get();
         return view('pages.home', compact('featured_products'));
     }

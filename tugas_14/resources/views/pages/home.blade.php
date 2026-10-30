@@ -1,53 +1,61 @@
 @extends('layouts.app')
 
-@section('title', 'Halaman Utama - Dhimson E-Store')
+@section('title', 'Home - Dhimson E-Store')
 
 @section('content')
 <!-- Hero Section -->
-<div class="text-white py-5 mb-5" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
-  <div class="container text-center py-5">
-    <span class="badge bg-warning text-dark px-3 py-2 mb-3 fw-semibold">Blade Modular Architecture</span>
-    <h1 class="display-4 fw-bold mb-3">Selamat Datang di Dhimson E-Store</h1>
-    <p class="lead text-white-50 mb-4 col-md-8 mx-auto">
-      Temukan perangkat teknologi performa tinggi dan produk tren terkini dengan pengalaman belanja modern.
+<div class="bg-dark text-white text-center py-5 mb-5 shadow-sm">
+  <div class="container py-4">
+    <h1 class="display-4 fw-bold">Welcome to <span class="text-warning">Dhimson E-Store</span></h1>
+    <p class="lead text-secondary col-lg-8 mx-auto mt-3">
+      E-Commerce platform managed with Laravel MVC Architecture.
     </p>
-    <a href="{{ route('products.index') }}" class="btn btn-warning px-4 py-2 fw-semibold shadow-sm">
-      <i class="bi bi-grid me-1"></i> Jelajahi Daftar Produk
+    <a href="{{ route('products.index') }}" class="btn btn-warning fw-semibold px-4 py-2 mt-2">
+      Explore Products
     </a>
   </div>
 </div>
 
 <!-- Featured Products Section -->
-<div class="container mb-5">
+<div class="container pb-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-      <h3 class="fw-bold mb-1">Produk Unggulan</h3>
-      <p class="text-muted small mb-0">Rekomendasi pilihan terbaik untuk kebutuhan harian Anda</p>
-    </div>
-    <a href="{{ route('products.index') }}" class="text-orange text-decoration-none fw-semibold">
-      Lihat Semua <i class="bi bi-arrow-right"></i>
+    <h3 class="fw-bold mb-0">Featured Products</h3>
+    <a href="{{ route('products.index') }}" class="text-warning text-decoration-none fw-semibold">
+      View All &rarr;
     </a>
   </div>
 
+  @php
+    $items = $featured_products ?? $products ?? [];
+  @endphp
+
   <div class="row g-4">
-    @forelse ($featured_products as $p)
+    @forelse ($items as $product)
       <div class="col-lg-3 col-md-6">
         <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-          <img src="{{ str_starts_with($p->gambar, 'http') ? $p->gambar : asset(str_replace('\\', '/', $p->gambar)) }}" 
+          <!-- Penanganan gambar link eksternal vs file lokal upload -->
+          <img src="{{ str_starts_with($product->image, 'http') ? $product->image : asset(str_replace('\\', '/', $product->image)) }}" 
                class="card-img-top object-fit-cover" 
                height="200" 
-               alt="{{ $p->nama_produk }}">
+               alt="{{ $product->name }}">
+               
           <div class="card-body d-flex flex-column">
-            <span class="badge bg-light text-secondary border w-auto align-self-start mb-2">{{ ucfirst($p->kategori ?? 'Umum') }}</span>
-            <h6 class="fw-bold mb-1">{{ $p->nama_produk }}</h6>
-            <p class="text-muted small text-truncate">{{ $p->deskripsi }}</p>
-            <div class="text-orange fw-bold fs-5 mt-auto mb-3">Rp {{ number_format($p->harga, 0, ',', '.') }}</div>
-            <a href="{{ route('products.show', $p->id) }}" class="btn btn-outline-dark btn-sm">Lihat Detail</a>
+            <span class="badge bg-light text-secondary border w-auto align-self-start mb-2">
+              {{ $product->category->name ?? 'Umum' }}
+            </span>
+            <h6 class="fw-bold mb-1">{{ $product->name }}</h6>
+            <p class="text-muted small text-truncate mb-3">{{ $product->description }}</p>
+            <div class="text-orange fw-bold fs-5 mt-auto mb-3">
+              Rp {{ number_format($product->price, 0, ',', '.') }}
+            </div>
+            <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-dark btn-sm w-100">
+              View Details
+            </a>
           </div>
         </div>
       </div>
     @empty
-      <div class="col-12 text-center py-4">
+      <div class="col-12 text-center py-5">
         <p class="text-muted">Belum ada produk unggulan yang tersedia.</p>
       </div>
     @endforelse

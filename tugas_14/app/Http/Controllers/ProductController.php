@@ -11,15 +11,18 @@ class ProductController extends Controller
     {
         $kategori = $request->query('kategori');
 
+        // Query relasi ke ProductCategory
         $query = Product::with('category');
 
+        // Filter kategori jika ada parameter query
         if ($kategori && $kategori !== 'all') {
             $query->whereHas('category', function ($q) use ($kategori) {
                 $q->where('name', 'like', "%{$kategori}%");
             });
         }
 
-        $products = $query->get();
+        // KUNCI TUGAS 14: Batasi 4 produk per halaman menggunakan paginate()
+        $products = $query->paginate(4);
 
         return view('products.index', compact('products', 'kategori'));
     }
